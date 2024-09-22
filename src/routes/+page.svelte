@@ -48,7 +48,7 @@
                 let value = row[valuesColumnIndex];
 
                 if (valueType == 'NUMBER') {
-                    value = value.replaceAll(' ', '');
+                    value = value.replaceAll(' ', '').replaceAll(' ', '');
                 }
 
                 if (key == newTableKey || key == '' || value == '') {
