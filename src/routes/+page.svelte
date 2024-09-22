@@ -98,18 +98,6 @@
 
     $: readAndGenerateJson(inputFiles);
 
-    function downloadJson() {
-        let a = document.createElement('a');
-
-        document.body.append(a);
-
-        a.download = 'frc.json';
-
-        a.click();
-
-        a.remove();
-    }
-
     // @ts-ignore
     let hash = __COMMIT_HASH__;
 </script>
