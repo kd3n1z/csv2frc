@@ -44,15 +44,10 @@
                 const row = table[rowIndex];
 
                 const key = row[startPoint.columnIndex];
-
-                if (key == newTableKey) {
-                    break;
-                }
-
                 const value = row[valuesColumnIndex];
 
-                if (key == '' || value == '') {
-                    continue;
+                if (key == newTableKey || key == '' || value == '') {
+                    break;
                 }
 
                 console.log(key);
