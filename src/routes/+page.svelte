@@ -1,5 +1,6 @@
 <script lang="ts">
     import { parse } from 'csv-parse/browser/esm/sync';
+    import { version } from '$app/environment';
 
     const newTableKey = '!KEY';
 
@@ -44,7 +45,11 @@
                 const row = table[rowIndex];
 
                 const key = row[startPoint.columnIndex];
-                const value = row[valuesColumnIndex];
+                let value = row[valuesColumnIndex];
+
+                if (valueType == 'NUMBER') {
+                    value = value.replaceAll(' ', '');
+                }
 
                 if (key == newTableKey || key == '' || value == '') {
                     break;
@@ -104,6 +109,9 @@
 
         a.remove();
     }
+
+    // @ts-ignore
+    let hash = __COMMIT_HASH__;
 </script>
 
 <svelte:head>
@@ -111,6 +119,7 @@
 </svelte:head>
 
 <h1>csv2frc</h1>
+<h4>git commit: {hash}</h4>
 <main>
     <input bind:files={inputFiles} type="file" id="file" name="csvFile" accept=".csv" required />
     {#if transformedObject != null}
