@@ -43,7 +43,7 @@
             for (let rowIndex = startPoint.rowStartIndex + 1; rowIndex < table.length; rowIndex++) {
                 const row = table[rowIndex];
 
-                const key = row[startPoint.columnIndex];
+                const key = row[startPoint.columnIndex].trim();
                 let value = row[valuesColumnIndex];
 
                 if (key == newTableKey || key == '' || value == '') {
