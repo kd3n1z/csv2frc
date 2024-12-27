@@ -38,7 +38,7 @@
         for (let i = 0; i < startPoints.length; i++) {
             const startPoint = startPoints[i];
             const valuesColumnIndex = startPoint.columnIndex + 1;
-            const valueType = table[startPoint.rowStartIndex][valuesColumnIndex].split(':')[1];
+            const tableValueType = table[startPoint.rowStartIndex][valuesColumnIndex].split(':')[1];
 
             for (let rowIndex = startPoint.rowStartIndex + 1; rowIndex < table.length; rowIndex++) {
                 const row = table[rowIndex];
@@ -54,15 +54,15 @@
                     continue;
                 }
 
-                let cellValueType = valueType;
+                let valueType = tableValueType;
 
                 if (value.startsWith('!')) {
                     const parts = value.split(':');
-                    cellValueType = parts[0].slice(1);
+                    valueType = parts[0].slice(1);
                     value = value.slice(parts[0].length + 1);
                 }
 
-                if (cellValueType == 'NUMBER') {
+                if (valueType == 'NUMBER') {
                     value = value.replaceAll(' ', '').replaceAll(' ', '');
                 }
 
@@ -71,7 +71,7 @@
                 values.push({
                     key,
                     value,
-                    valueType: cellValueType,
+                    valueType,
                 });
             }
         }
